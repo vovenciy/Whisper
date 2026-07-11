@@ -1,0 +1,147 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box; /* Префикс для старых версий Chrome */
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 1. Главный экран (Flexbox центрирование) */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #f4f7f6; /* Светлый фон */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 2. Контейнер, который держит заголовок и форму вместе */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрирует надпись "Welcome" строго по центру формы */
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+}
+
+/* 3. Стиль огромной надписи "Welcome" */
+.welcome-title {
+  font-size: 64px;          /* Огромный размер */
+  font-weight: 800;          /* Очень жирный шрифт */
+  margin: 0 0 24px 0;       /* Отступ снизу до формы */
+  text-transform: uppercase; /* Все буквы заглавные */
+  letter-spacing: 3px;      /* Красивое расстояние между буквами */
+  
+  /* Эффект супер-модного градиентного текста */
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Мягкое элегантное свечение букв */
+  text-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
+  animation: fadeIn 1s ease-in-out; /* Плавное появление при загрузке */
+}
+
+/* 4. Карточка формы (остается аккуратной и белой) */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 20px;       /* Чуть более скругленные углы */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Плавная анимация для красоты */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Стили для инпутов, кнопок и ссылок остаются из предыдущего шага */
+.login-form h2 { margin-top: 0; margin-bottom: 24px; text-align: center; color: #333; font-size: 24px; }
+.login-input { width: 100%; padding: 14px 16px; margin-bottom: 16px; border: 1px solid #dcdcdc; border-radius: 8px; font-size: 16px; box-sizing: border-box; transition: all 0.3s; }
+.login-input:focus { border-color: #007bff; outline: none; box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); }
+.login-btn { width: 100%; padding: 14px; background-color: #007bff; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 8px; }
+.login-btn:hover { background-color: #0056b3; }
+.login-redirect { margin-top: 20px; text-align: center; font-size: 14px; color: #666; }
+.login-redirect a { color: #007bff; text-decoration: none; font-weight: 500; }
+.login-redirect a:hover { text-decoration: underline; }
+
+/* Заголовок формы */
+.login-form h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #333333;
+  font-size: 28px;
+}
+
+/* 3. Стили для инпутов (крупные и отзывчивые) */
+.login-input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s ease; /* Плавный переход при фокусе */
+}
+
+/* Эффект при клике на инпут */
+.login-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); /* Синее свечение */
+}
+
+/* 4. Крупная и красивая кнопка */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #007bff; /* Яркий синий цвет */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 8px;
+}
+
+/* Эффект при наведении на кнопку */
+.login-btn:hover {
+  background-color: #0056b3; /* Темно-синий при наведении */
+}
+
+/* 5. Надпись 'Нет аккаунта?' */
+.login-redirect {
+  margin-top: 20px;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 14px;
+  color: #666666;
+}
+
+.login-redirect a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-redirect a:hover {
+  text-decoration: underline; /* Подчеркивание ссылки при наведении */
+}

@@ -1,0 +1,97 @@
+/* Основной контейнер секции запросов */
+.requests-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Блок с текстовой информацией (имя и токен) */
+.user-info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;             /* Небольшое расстояние между строками */
+  margin-bottom: 24px;  /* Отступ снизу до формы */
+}
+
+/* Одинаковые красивые стили для имени и токена */
+.user-name, 
+.user-token {
+  font-size: 26px;      /* Большой, выразительный размер */
+  font-weight: 700;     /* Жирный акцентный шрифт */
+  color: #f8f8f9;       /* Глубокий темный цвет */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* Дополнительный визуальный маркер для токена (опционально, делает его серым, если нужно отличить) 
+   Если хотите полностью идентичный цвет, просто удалите блок ниже */
+.user-token {
+  color: #f7f9fa;       
+}
+
+/* Форма отправки приглашения */
+.invite-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;            /* Расстояние между инпутом и кнопкой */
+}
+
+/* Большой инпут на всю ширину */
+.invite-input {
+  width: 100%;          
+  padding: 16px 20px;   /* Сделали вровень с толстой кнопкой */
+  font-size: 16px;
+  color: #212529;
+  background-color: #ffffff;
+  border: 2px solid #dee2e6;
+  border-radius: 10px;  /* Современное скругление */
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.invite-input:focus {
+  outline: none;
+  border-color: #0d6efd; 
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+}
+
+.invite-input::placeholder {
+  color: #adb5bd;
+}
+
+/* Толстая, премиальная кнопка отправки */
+.invite-submit-btn {
+  width: 100%;          
+  padding: 18px 28px;   /* Увеличенные отступы — кнопка стала заметно толще */
+  font-size: 17px;      /* Слегка увеличенный размер текста */
+  font-weight: 700;     /* Максимально плотный, красивый шрифт */
+  letter-spacing: 0.5px;/* Небольшое красивое расстояние между буквами */
+  color: #ffffff;
+  
+  /* Элегантный синий градиент для глубины */
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); 
+  
+  border: none;
+  border-radius: 10px;  /* Одинаковое с инпутом скругление */
+  cursor: pointer;
+  
+  /* Мягкая тень под кнопкой для эффекта объема */
+  box-shadow: 0 4px 14px rgba(13, 110, 253, 0.25); 
+  
+  transition: transform 0.1s ease, filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Эффекты при взаимодействии */
+.invite-submit-btn:hover {
+  filter: brightness(1.08); /* Чуть подсвечивается при наведении */
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.35); /* Тень становится глубже */
+}
+
+.invite-submit-btn:active {
+  transform: scale(0.98);   /* Легкий физический отклик (прожимание) при клике */
+  filter: brightness(0.95);
+  box-shadow: 0 2px 8px rgba(13, 110, 253, 0.2);
+}

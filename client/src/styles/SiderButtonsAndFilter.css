@@ -1,0 +1,98 @@
+/* Единый контейнер для всего блока (кнопки + инпут) */
+.widget-container {
+  display: flex;
+  flex-direction: column; /* Элементы встают строго друг под друга */
+  width: 100%;            /* На всю ширину родителя */
+  box-sizing: border-box;
+}
+
+/* Ряд кнопок внутри контейнера */
+.button-row {
+  display: flex;         
+  width: 100%;          
+  margin: 0 !important;   /* Жестко обнуляем любые внешние отступы */
+  padding: 0 !important;  /* Жестко обнуляем внутренние отступы */
+}
+
+/* Общие стили для всех кнопок */
+.btn {
+  flex: 1;              
+  padding: 14px 24px;   
+  font-size: 16px;      
+  font-weight: 600;     
+  color: #ffffff;       
+  border: none;         
+  border-radius: 0;     
+  margin: 0 !important;   /* Убираем любые отступы между кнопками */
+  cursor: pointer;      
+  transition: filter 0.2s ease; 
+}
+
+/* Универсальный эффект затемнения при наведении */
+.btn:hover {
+  filter: brightness(0.85); 
+}
+
+.btn:active {
+  filter: brightness(0.75); 
+}
+
+/* Цвета кнопок */
+.btn-exit { background-color: #dc3545; }
+.btn-requests { background-color: #f408cc; }
+.btn-contacts { 
+  background-color: #0dcaf0; 
+  color: #212529; 
+}
+
+/* Контейнер для инпута внутри общего блока */
+.filter-container {
+  width: 100%;          
+  margin: 0 !important;   /* Жестко запрещаем любые отступы сверху/снизу */
+  padding: 0 !important;
+}
+
+/* Стили для самого инпута */
+.filter-input {
+  display: block;        /* Избавляет от базовых инлайновых микро-зазоров */
+  width: 100%;          
+  padding: 14px 20px;   
+  font-size: 16px;      
+  color: #212529;       
+  background-color: #f8f9fa; 
+  
+  /* Рамка по бокам и снизу, чтобы идеально пристыковаться к кнопкам */
+  border: 2px solid #dee2e6; 
+  border-top: none;     
+  
+  border-radius: 0; 
+  box-sizing: border-box;
+  margin: 0 !important;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Эффект при фокусе */
+.filter-input:focus {
+  outline: none;        
+  border-color: #0d6efd; 
+  background-color: #ffffff; 
+}
+
+.filter-input::placeholder {
+  color: #adb5bd;       
+}
+
+/* Контейнер для всего списка контактов */
+.contacts-list {
+  display: flex;
+  flex-direction: column; /* Элементы-контакты встают строго друг под друга */
+  width: 100%;            /* На всю ширину */
+  margin-top: 16px;       /* Небольшой отступ от инпута сверху */
+  margin-bottom: 0;       /* Без отступа снизу */
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 0;     /* Скругление для всей группы контактов */
+  overflow: hidden;       /* Чтобы нижние прямоугольные кнопки не вылезали за скругление */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Легкая красивая тень для списка */
+}

@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index js --ignore DBFriends.json ",
+    "startWS": "nodemon WebSocket js  --ignore DBFriends.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-ws": "^5.0.2",
+    "fs": "^0.0.1-security",
+    "nanoid": "^5.1.11",
+    "path": "^0.12.7"
+  },
+  
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

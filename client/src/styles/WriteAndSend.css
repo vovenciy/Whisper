@@ -1,0 +1,100 @@
+/* Главный контейнер чата (должен занимать 100% высоты родительского Content) */
+.chat-container.dark-theme {
+  display: flex;
+  flex-direction: column; /* Элементы выстраиваются строго вертикально */
+  height: 100%;
+  width: 100%; 
+  background: linear-gradient(135deg, #0b1528 0%, #040a14 100%);
+  overflow: hidden; /* Запрещает скроллиться всему контейнеру чата */
+}
+
+/* Оболочка сообщений, забирающая ВСЁ свободное пространство */
+.chat-messages-wrapper {
+  flex-grow: 1; /* Занимает всю доступную высоту до панели ввода */
+  overflow-y: auto; /* Скроллбар появляется ТОЛЬКО внутри этого блока */
+  overscroll-behavior: contain;
+  padding: 24px;
+}
+
+/* Сетка списка сообщений */
+.chat-messages-list {
+  display: grid;
+  align-content: start; 
+  gap: 16px;
+  min-height: 100%;
+}
+
+/* Отступ последнего сообщения, чтобы оно не липло вплотную к инпуту */
+.chat-messages-list > *:last-child {
+  margin-bottom: 20px; 
+}
+
+
+/* ПАНЕЛЬ ВВОДА: Прижата к самому низу и намертво зафиксирована */
+.chat-footer-bar {
+  flex-shrink: 0; /* ЗАПРЕЩАЕТ контенту сверху сжимать или выдавливать эту панель вниз экрана */
+  width: 100%; 
+  padding: 20px 24px;
+  background-color: rgba(11, 21, 40, 0.85); /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Эффект матового стекла */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Большой белый инпут */
+.chat-custom-input.ant-input-affix-wrapper {
+  width: 100% !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 24px !important;
+  padding: 8px 8px 8px 20px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s ease;
+}
+
+.chat-custom-input .ant-input {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  font-size: 16px !important;
+}
+
+.chat-custom-input .ant-input::placeholder {
+  color: #94a3b8;
+}
+
+.chat-custom-input.ant-input-affix-wrapper-focused {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15), 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Круглая кнопка-стрелочка */
+.chat-round-btn.ant-btn {
+  width: 36px !important;
+  height: 36px !important;
+  background-color: #1677ff !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 2px 8px rgba(22, 119, 255, 0.3) !important;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.chat-round-btn.ant-btn:hover:not(:disabled) {
+  background-color: #1d4ed8 !important;
+  transform: scale(1.05);
+}
+
+.chat-round-btn.ant-btn:disabled {
+  background-color: #f1f5f9 !important;
+  color: #cbd5e1 !important;
+  box-shadow: none !important;
+}
+
+/* Скроллбар */
+.chat-messages-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.chat-messages-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}

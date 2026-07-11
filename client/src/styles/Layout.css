@@ -1,0 +1,21 @@
+/* 1. Блокируем прокрутку самого браузера */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 2. Растягиваем главный контейнер Ant Design на весь экран */
+.ant-layout {
+  height: 100vh;
+}
+
+/* 3. Включаем изолированную прокрутку для каждого компонента */
+.ant-layout-sider,
+.ant-layout-header,
+.ant-layout-content {
+  max-height: 100%; 
+  overflow-y: auto; /* Прокрутка появляется, только если контент не влезает */
+  overscroll-behavior: contain; /* Запрещает скроллить соседние блоки, когда этот закончился */
+}

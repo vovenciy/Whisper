@@ -1,0 +1,64 @@
+/* Стили для одной кнопки-контакта */
+.contact-item {
+  width: 100%;            /* Занимает всю ширину */
+  padding: 16px 20px;     /* Делаем кнопку большой и удобной для клика */
+  font-size: 15px;        /* Средний, легко читаемый размер текста */
+  font-weight: 500;       /* Приятная средняя толщина шрифта */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* Красивый системный шрифт */
+  color: #212529;         /* Темный цвет текста */
+  background-color: #ffffff; /* Белый фон */
+  text-align: center;       /* Выравнивание текста по левому краю */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Центрирует весь контент внутри кнопки */
+  gap: 20px; /* Задает фиксированный отступ между текстом и кружком */
+  /* Создаем тонкие разделительные линии между контактами */
+  position: relative; /* Важно: становится точкой отсчета для кружка */
+  border: 1px solid #e9ecef; 
+  border-top: none;       /* Убираем верхнюю рамку, чтобы линии не удваивались */
+  border-radius: 0;       /* Строго прямоугольные кнопки */
+  
+  margin: 0 !important;   /* Гарантируем полное отсутствие отступов между кнопками */
+  cursor: pointer;
+  transition: background-color 0.15s ease; /* Плавный эффект при наведении */
+}
+
+/* Первая кнопка в списке восстанавливает верхнюю рамку для аккуратности */
+.contact-item:first-child {
+  border-top: 1px solid #e9ecef;
+}
+
+/* Красивый эффект наведения на контакт */
+.contact-item:hover {
+  background-color: #f8f9fa; /* Мягкий серый цвет при наведении */
+}
+
+/* Эффект при клике на контакт */
+.contact-item:active {
+  background-color: #e9ecef;
+}
+
+.contact-item.is-pulsing {
+  animation: blue-glow-only 2s infinite ease-in-out;
+  color: #fff;
+}
+
+/* Анимация: только переливание цвета и мягкое свечение */
+@keyframes blue-glow-only {
+  0% {
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+  50% {
+    background-color: #2563eb; /* Плавная смена фона всей кнопки */
+    border-color: #3b82f6;
+    /* Свечение увеличивается, создавая иллюзию пульсации без изменения размеров текста */
+    box-shadow: 0 0 20px 6px rgba(59, 130, 246, 0.6); 
+  }
+  100% {
+    background-color: #1e3a8a;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
+  }
+}
