@@ -17,7 +17,7 @@ export default function Registration () {
     const SendingToServer = async (name, password) => {
         const data = { name: name, password: password }
         try {
-           const response = await fetch('http://localhost:5001/registration', {
+           const response = await fetch('http://localhost:8080/registration', {
                 method: 'POST', 
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data) 
