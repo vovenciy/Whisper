@@ -68,7 +68,7 @@ async function CreateFriendsList(userToken) {
 async function getFriends(token) {
     const FriendsArray = []
     const filename = `user_${token}.jsonl`
-    const fullpath = path.resolve('./FriendsLists', filename)
+    const fullpath = path.resolve('./Friendslists', filename)
     try {
         const filestream = createReadStream(fullpath, 'utf-8')
         const rl = readline.createInterface({
@@ -95,10 +95,10 @@ async function getFriends(token) {
 }
 
 async function MakeFriends(FirstName, FirstToken, SecondName, SecondToken, ChatId) { 
-    const fullpath1 = path.resolve('./FriendsLists', `user_${FirstToken}.jsonl`)
+    const fullpath1 = path.resolve('./Friendslists', `user_${FirstToken}.jsonl`)
     const jsonline1 = JSON.stringify({name: FirstName, FriendshipToken: FirstToken, ChatId: ChatId}) + '\n'
      
-    const fullpath2 = path.resolve('./FriendsLists', `user_${SecondToken}.jsonl`)
+    const fullpath2 = path.resolve('./Friendslists', `user_${SecondToken}.jsonl`)
     const jsonline2 = JSON.stringify({name: SecondName, FriendshipToken: SecondToken, ChatId: ChatId}) + '\n'
     try {
         await fs.appendFile(fullpath1, jsonline2, 'utf-8')
@@ -294,7 +294,7 @@ WS.on('connection', async (ws, req) => {
 })
 
 
-server.listen(PORT, () => console.log(`server started on port ${PORT}`))
+server.listen(PORT, '0.0.0.0', () => console.log(`server started on port ${PORT}`))
 server.keepAliveTimeout = 0
 
 
