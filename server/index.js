@@ -1,18 +1,22 @@
-const express = require('express')
-const http = require('http')
-const cors = require('cors')
-const fs = require('fs/promises')
-const FSsync = require('fs')
-const path = require('path')
-const { mkdir } = require('fs/promises')
-const bcrypt = require('bcrypt')
-const { customAlphabet } = require('nanoid')
-const WebSocket = require('ws');
-const readline = require('readline')
+import express from 'express'
+import http from 'http'
+import cors from 'cors'
+import fs from 'fs/promises'
+import {createReadStream} from 'fs'
+import path from 'path'
+import { mkdir } from 'fs/promises'
+import bcrypt from 'bcrypt'
+import { customAlphabet } from 'nanoid'
+import WebSocket from 'ws'
+import readline from 'readline'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 const PORT = process.env.PORT || 8080
 const app = express()
 const server = http.createServer(app)
 const WS = new WebSocket.Server({server})
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename)
 
 app.use(express.json())
 app.use(cors({
@@ -25,7 +29,7 @@ const clients = new Map()
 async function getUsers() {
     const userslist = []
     try {
-        const filestream = FSsync.createReadStream(DB_USERS, 'utf-8')
+        const filestream = createReadStream(DB_USERS, 'utf-8')
         const rl = readline.createInterface({
             input: filestream,
             crlfDelay: Infinity
@@ -66,7 +70,7 @@ async function getFriends(token) {
     const filename = `user_${token}.jsonl`
     const fullpath = path.resolve('./FriendsLists', filename)
     try {
-        const filestream = FSsync.createReadStream(fullpath, 'utf-8')
+        const filestream = createReadStream(fullpath, 'utf-8')
         const rl = readline.createInterface({
             input: filestream,
             crlfDelay: Infinity
@@ -131,7 +135,7 @@ async function GetChat(ID) {
     const filename = `chat_${ID}.jsonl`
     const fullpath = path.resolve('./Chats', filename)
     try {
-        const filestream = FSsync.createReadStream(fullpath, 'utf-8')
+        const filestream = createReadStream(fullpath, 'utf-8')
         const rl = readline.createInterface({
             input: filestream,
             crlfDelay: Infinity
@@ -200,7 +204,7 @@ app.post('/login', async (req, res) => {
 
 WS.on('connection', async (ws, req) => {
     ws.on('message', async (message) => {
-        data = JSON.parse(message)
+        let data = JSON.parse(message)
         if (data.type==='auth') {
             const tokenToFind = data.FT
             clients.set(tokenToFind, ws)
@@ -214,10 +218,10 @@ WS.on('connection', async (ws, req) => {
             ws.send(JSON.stringify(msg))
                   
         } else if (data.type==='offer') {
-            targetToken = data.to
+            let targetToken = data.to
             
             try {
-                targetSocket = clients.get(targetToken)
+                let targetSocket = clients.get(targetToken)
                 
                 let msg = {
                     type: 'request for friendship',
@@ -230,15 +234,15 @@ WS.on('connection', async (ws, req) => {
             }
         } else if (data.type==='request accepted') {
             try {
-                targetToken = data.SecondToken
-                FirstName = data.FirstName
-                FirstToken = data.FirstToken
-                SecondName = data.SecondName
-                SecondToken = data.SecondToken
-                ChatId = data.ChatId
+                let targetToken = data.SecondToken
+                let FirstName = data.FirstName
+                let FirstToken = data.FirstToken
+                let SecondName = data.SecondName
+                let SecondToken = data.SecondToken
+                let ChatId = data.ChatId
                 await MakeFriends(FirstName, FirstToken, SecondName, SecondToken, ChatId)
                 await createChat('./Chats', ChatId)
-                targetSocket = clients.get(SecondToken)
+                let targetSocket = clients.get(SecondToken)
                 let msg = {
                     type: 'request accepted',
                     FirstName,
