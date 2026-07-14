@@ -1,6 +1,7 @@
 {
   "name": "whisper2",
   "version": "0.1.0",
+  "homepage": "https://vovenciy.github.io/Whisper-React",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -23,6 +24,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm  -r reactorigin run build",
+    "deploy": "gh-pages -r reactorigin -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,5 +48,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
