@@ -32,12 +32,13 @@ export default function Chat() {
   }, [CurrentContact])
 
   useEffect(() => {
+    document.title = 'Whisper'
     for (let contact of Contacts) {
       sessionStorage.setItem(contact.ChatId, null)
     }
     const ContactToSeeFirst = JSON.parse(sessionStorage.getItem('CurrentContact')) || {name: '???'}
     setCurrentContact(ContactToSeeFirst)
-    const ws = new WebSocket("ws://localhost:8080")
+    const ws = new WebSocket("ws://172.18.66.3:8080")
     console.log(ws)
     ws.onopen = () => {
         setSocket(ws)
@@ -90,6 +91,9 @@ export default function Chat() {
               sessionStorage.setItem(contact.ChatId, null)
             }
           } else if (received.type==='Incoming Message') {
+            if (document.hidden) {
+              document.title = 'new notification!'
+            }
             let FromToken = received.from
             let TargetChatId = received.ChatId
             
@@ -119,6 +123,17 @@ export default function Chat() {
     ws.onclose = (event) => {
       console.log(event)
     }
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        document.title = 'Whisper'
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+    
     
   } , [])
   

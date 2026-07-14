@@ -16,7 +16,6 @@ function App() {
   const [MyToken, setMyToken] = useSessionStorage('UserToken')
   const [MyName, setMyName] = useSessionStorage('me')
   const [Requests, setRequests] = useSessionStorage("AllMyRequests", [])
-  
   return (
         <RequestsContext.Provider value = {{Requests, setRequests}}>
           <MyNameContext.Provider value={{MyName, setMyName}}>

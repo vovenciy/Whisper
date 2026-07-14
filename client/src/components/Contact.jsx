@@ -28,11 +28,6 @@ const Contact = ({current}) => {
         if (PulsingList.includes(current.FriendshipToken)) {
             setIsPulsing(true)
         }
-        if (PulsingList.length > 0) {
-            document.title = 'new notification!'
-        } else {
-            document.title = 'Whisper'
-        }
         return
     }, [PulsingList])
     return (
