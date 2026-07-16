@@ -11,6 +11,7 @@ import { SocketContext } from '../context/Socket';
 import { MyNameContext } from '../context/MyName';
 import '../styles/LoginAndRegistration.css'
 export default function Login () {
+    document.title = 'Whisper'
     const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [userpassword, setUserpassword] = useState('')

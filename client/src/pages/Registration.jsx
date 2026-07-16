@@ -10,6 +10,7 @@ import { useContext } from 'react';
 import '../styles/LoginAndRegistration.css'
 
 export default function Registration () {
+    document.title ='Whisper'
     const [name, setName] = useState('')
     const [password, setPassword] = useState('')
     const [messageFromServer, setMessageFromServer] = useState('')
