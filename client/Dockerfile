@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Копируем файлы зависимостей и устанавливаем их
 COPY package*.json ./
-RUN npm install
+RUN npm install --verbose
 
 # Копируем весь исходный код и собираем проект
 COPY . .
