@@ -38,7 +38,7 @@ export default function Chat() {
     }
     const ContactToSeeFirst = JSON.parse(sessionStorage.getItem('CurrentContact')) || {name: '???'}
     setCurrentContact(ContactToSeeFirst)
-    const ws = new WebSocket("ws://whisper.volkov.dev:8080")
+    const ws = new WebSocket("wss://whisper.volkov.dev:8080")
     console.log(ws)
     ws.onopen = () => {
         setSocket(ws)

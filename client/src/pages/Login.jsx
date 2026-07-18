@@ -25,7 +25,7 @@ export default function Login () {
         
         const enteredData = {name: name, password: password}
         try {
-            const response = await fetch('http://whisper.volkov.dev:8080/login', {
+            const response = await fetch('https://whisper.volkov.dev:8080/login', {
                 method: 'POST', 
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(enteredData) 

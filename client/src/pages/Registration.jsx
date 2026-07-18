@@ -18,7 +18,7 @@ export default function Registration () {
     const SendingToServer = async (name, password) => {
         const data = { name: name, password: password }
         try {
-           const response = await fetch('http://whisper.volkov.dev:8080/registration', {
+           const response = await fetch('https://whisper.volkov.dev:8080/registration', {
                 method: 'POST', 
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data) 
