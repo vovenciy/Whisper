@@ -1,33 +1,25 @@
-# --- STAGE 1: Build Platform ---
-FROM node:22-alpine AS builder
-
-# Set working directory
+# --- Этап 1: Сборка React приложения ---
+FROM node:20-alpine AS build
 WORKDIR /app
 
-# Copy dependency files first to leverage Docker caching
+# Копируем файлы зависимостей и устанавливаем их
 COPY package*.json ./
+RUN npm ci
 
-# Install all dependencies (including build tools)
-RUN npm install
-
-# Copy the rest of the application source code
+# Копируем весь исходный код и собираем проект
 COPY . .
-
-# Build the static production assets (outputs to /app/build)
 RUN npm run build
+# (Примечание: Vite собирает в папку /app/dist, а Create React App в /app/build. 
+# Если у вас CRA, в следующем этапе измените "dist" на "build")
 
+# --- Этап 2: Запуск веб-сервера Nginx ---
+FROM nginx:stable-alpine
 
-# --- STAGE 2: Production Nginx Server ---
-FROM nginx:1.27-alpine AS runner
+# Копируем наш кастомный конфиг Nginx внутрь образа
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-# Copy the static files compiled by Create React App to Nginx's public directory
-COPY --from=builder /app/build /usr/share/nginx/html
+# Копируем статические файлы React из предыдущего этапа (build) в папку Nginx
+COPY --from=build /app/build /usr/share/nginx/html
 
-# Copy custom Nginx configuration to handle React Router client-side routing
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Expose HTTP port
-EXPOSE 80
-
-# Start Nginx in the foreground
+EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
