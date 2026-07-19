@@ -2,6 +2,7 @@ version: "3.8"
 services:
   servercontainer:
     image: whisperimage
+    
   reactcontainer:
     image: reactimage
     ports: 

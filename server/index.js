@@ -60,6 +60,7 @@ async function AddUser(user) {
 
 async function CreateFriendsList(userToken) {
     const filename = `user_${userToken}.jsonl`
+    await mkdir('./Friendlists', {recursive: true})
     const fullpath = path.resolve('./Friendslists', filename)
     await fs.writeFile(fullpath, '', 'utf-8')
     return
@@ -112,8 +113,8 @@ async function MakeFriends(FirstName, FirstToken, SecondName, SecondToken, ChatI
 
 async function createChat (folder, Id) {
     const filename = `chat_${Id}.jsonl`
-    const fullpath = path.resolve(folder, filename)
     await mkdir(folder, {recursive: true})
+    const fullpath = path.resolve(folder, filename)
     await fs.writeFile(fullpath, '', 'utf-8')
     return 
 }
