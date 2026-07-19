@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  servercontainer:
+    image: whisperimage
+  reactcontainer:
+    image: reactimage
+    ports: 
+    - 80:80
+    - 8080:8080
+    - 443:443
+    volumes: 
+    - "/etc/letsencrypt/:/etc/letsencrypt/:ro"
+
+    
