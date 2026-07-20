@@ -33,6 +33,7 @@ async function getUsers() {
         for await(const line of rl) {
             if (line.trim()) {
                 try {
+                    console.log(line)
                     const user = JSON.parse(line)
                     userslist.push(user)
                 } catch (error) {
